@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+#display the pares of log file in list format
+
+awk '{print $1 " " $9}' apache-access.log
