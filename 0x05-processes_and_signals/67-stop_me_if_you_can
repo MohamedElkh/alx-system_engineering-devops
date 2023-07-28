@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 #display the script 67
 
-pkill -f 7-highlander
+pkill -SIGTERM -f "7-highlander"
