@@ -1,7 +1,10 @@
 #!/usr/bin/env bash
 #Bash script that
+#create /var/run/holbertonscript.pid
+#sleep 2 to use it
+#+ kill it
 
-terminator()
+terminator() 
 {
 	rm /var/run/holbertonscript.pid
 	exit
