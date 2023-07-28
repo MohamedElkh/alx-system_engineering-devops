@@ -1,16 +1,16 @@
 #!/usr/bin/env bash
-#Bash script that
-#create /var/run/holbertonscript.pid
-#sleep 2 to use it
+#Bash script that:
+# create /var/run/holbertonscript.pid
+# sleep 2 to use it
 #+ kill it
 
-terminator() 
+terminator()
 {
-	rm /var/run/holbertonscript.pid
+	rm /var/run/myscript.pid
 	exit
 }
 
-echo "$$" > /var/run/holbertonscript.pid
+echo "$$" > /var/run/myscript.pid
 
 while true
 do
