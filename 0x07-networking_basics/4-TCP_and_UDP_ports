@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+#display listining ports & socket as pid and name of pg
+
+netstat -l --program
