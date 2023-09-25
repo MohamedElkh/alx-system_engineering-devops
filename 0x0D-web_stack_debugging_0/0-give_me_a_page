@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# run apache on alx
+
+sudo service apache2 start
