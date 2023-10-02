@@ -1,20 +1,25 @@
 #use puppt to auto the task to create custom http res
 
 exec {'update':
-  coommand => '/usr/bin/apt-get update',
+  provider => shell,
+  command  => 'sudo apt-get -y update',
+  before   => Exec['install Nginx'],
 }
 
--> package {'nginx':
-  ensure => 'present',
+exec {'install Nginx':
+  provider => shell,
+  command  => 'sudo apt-get -y install nginx',
+  before   => Exec['add_header'],
 }
 
--> file_line {'http_header':
-  path  => '/etc/nginx/nginx.conf',
-  match => 'http {',
-  line  => "http {\n\tadd_header X-Served-By \"${hostname}\";",
+exec {'add_header':
+  provider => shell,
+  environment => ["HOST=${hostname}"],
+  command     => 'sudo sed -i "s/include \/etc\/nginx\/sites-enabled\/\*;/include \/etc\/nginx\/sites-enabled\/\*;\n\tadd_header X-Served-By \"$HOST\";/" /etc/nginx/nginx.conf',
+  before      => Exec['restart Nginx'],
 }
 
--> exec {'run':
-  command => '/usr/sbin/service nginx restart',
+exec { 'restart Nginx':
+  provider => shell,
+  command  => 'sudo service nginx restart',
 }
-
