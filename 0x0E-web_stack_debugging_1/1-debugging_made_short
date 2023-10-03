@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+#debug nginx that it not running
+sed -i 's/8000/80/g' /etc/nginx/sites-enabled/default
+service nginx restart
+pkill -o nginx
