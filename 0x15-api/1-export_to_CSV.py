@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 """command to export to do list"""
-import sys
 import csv
 import requests
+import sys
 
 if __name__ == "__main__":
     user_id = sys.argv[1]
