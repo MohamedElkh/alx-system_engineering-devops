@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """command to return to do list info"""
-import sys
 import requests
+import sys
 
 if __name__ == "__main__":
     url = "https://jsonplaceholder.typicode.com/"
