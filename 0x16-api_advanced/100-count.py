@@ -1,13 +1,14 @@
 #!/usr/bin/python3
 """func to contains the count words"""
+import requests
 
 
 def count_words(subreddit, word_list, f_list=[], after=None):
     """func to print counts of given words"""
     user_agent = {'User-agent': 'test45'}
 
-    posts = requests.get{'http://www.reddit.com/r/{}/hot.json?after={}'
-                         .format(subreddit, after), headers = user_agent)
+    posts = requests.get('http://www.reddit.com/r/{}/hot.json?after={}'
+                         .format(subreddit, after), headers=user_agent)
 
     if after is None:
         word_list = [word.lower() for word in word_list]

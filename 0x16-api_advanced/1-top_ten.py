@@ -22,4 +22,4 @@ def top_ten(subreddit):
 
     res = response.json().get("data")
 
-    [print(c.get("data").get("title")) for c in res.get("children")]
+    [print(x.get("data").get("title")) for x in res.get("children")]
