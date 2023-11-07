@@ -1,24 +1,23 @@
 #!/usr/bin/python3
-"""func to contains the count words"""
+"""func to contain the count words"""
 import requests
 
 
 def count_words(subreddit, word_list, f_list=[], after=None):
-    """func to print counts of given words"""
+    """func to print the counts of given words"""
     user_agent = {'User-agent': 'test45'}
-
-    posts = requests.get('http://www.reddit.com/r/{}/hot.json?after={}'
-                         .format(subreddit, after), headers=user_agent)
+    postsx = requests.get('http://www.reddit.com/r/{}/hot.json?after={}'
+                          .format(subreddit, after), headers=user_agent)
 
     if after is None:
         word_list = [word.lower() for word in word_list]
 
-    if posts.status_code == 200:
-        posts = posts.json()['data']
-        af = posts['after']
-        posts = posts['children']
+    if postsx.status_code == 200:
+        postsx = postsx.json()['data']
+        af = postsx['after']
+        postsx = postsx['children']
 
-        for p in posts:
+        for p in postsx:
             title = p['data']['title'].lower()
 
             for word in title.split(' '):
@@ -35,9 +34,8 @@ def count_words(subreddit, word_list, f_list=[], after=None):
                     res[word.lower()] += 1
                 else:
                     res[word.lower()] = 1
-
             for key, val in sorted(res.items(), key=lambda item: item[1],
                                    reverse=True):
-                print('{} {}'.format(key, val))
+                print('{}: {}'.format(key, val))
     else:
         return
